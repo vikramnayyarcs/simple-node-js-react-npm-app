@@ -4,6 +4,9 @@ pipeline {
         stage('Build and Run') {
             steps {
                 bat '''
+                    :: Install dependencies
+                    npm install
+
                     :: Run build
                     npm run build
 
