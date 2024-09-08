@@ -17,7 +17,7 @@ echo "is followed by another command that retrieves the process ID (PID) value"
 echo "of the previously run process (i.e. "npm start") and writes this value to"
 echo "the file ".pidfile"."
 set "-x"
-npm "start"
+npm "start" "&"
 sleep "1"
 echo "%!%" REM UNKNOWN: {"type":"Redirect","op":{"text":">","type":"great"},"file":{"text":".pidfile","type":"Word"}}
 set "+x"
