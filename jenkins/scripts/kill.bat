@@ -5,6 +5,9 @@ echo The following command terminates the "npm start" process using its PID
 echo (written to ".pidfile"), all of which were conducted when "deliver.bat"
 echo was executed.
 
+REM Enable delayed expansion for dynamic variable use
+setlocal EnableDelayedExpansion
+
 REM Check if the .pidfile exists
 if not exist ".pidfile" (
     echo .pidfile not found. No process to kill.
@@ -17,7 +20,7 @@ for /f "delims=" %%a in ('type .pidfile') do (
     set "_INTERPOLATION_0=%%a"
 )
 
-REM Terminate the process with the PID
+REM Check if the PID variable is not empty
 if not "!_INTERPOLATION_0!"=="" (
     echo Terminating process with PID !_INTERPOLATION_0!
     taskkill /PID !_INTERPOLATION_0! /F
