@@ -22,5 +22,20 @@ pipeline {
                 }
             }
         }
+        stage('Deliver') {
+            steps {
+                script {
+                    // Run the delivery script
+                    bat 'jenkins\\scripts\\deliver.bat'
+
+                    // Wait for user input
+                    input message: 'Finished using the web site? (Click "Proceed" to continue)'
+
+                    // Run the kill script
+                    bat 'jenkins\\scripts\\kill.bat'
+                }
+            }
+        }
+
     }
 }
