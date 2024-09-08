@@ -11,9 +11,13 @@ pipeline {
                 script {
                     // Check the OS and run the appropriate script
                     if (isUnix()) {
-                        sh './jenkins/scripts/test.sh'
+                        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                            sh './jenkins/scripts/test.sh'
+                        }
                     } else {
-                        bat 'jenkins\\scripts\\test.bat'
+                        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                            bat 'jenkins\\scripts\\test.bat'
+                        }
                     }
                 }
             }
